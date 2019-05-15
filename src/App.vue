@@ -3,15 +3,15 @@
     <h1>Cadastro de usuário</h1>
     <div class="conteudo">
       <form class="painel">
-        <div class="cabecalho">Formulário</div>
+        <div class="cabecalho">Formulário usuário</div>
         <Rotulo nome="Nome">
-          <input type="text">
+          <input type="text" v-model.lazy.trim="usuario.nome">
         </Rotulo>
         <Rotulo nome="Senha">
-          <input type="password">
+          <input type="password" v-model.lazy.trim="usuario.senha">
         </Rotulo>
         <Rotulo nome="Conta do banco">
-          <input type="text">
+          <input type="text" v-model.lazy.trim="usuario.banco">
         </Rotulo>
 
         <hr>
@@ -21,13 +21,13 @@
       <div class="painel">
         <div class="cabecalho">Resultado</div>
         <Rotulo nome="Nome">
-          <span>???</span>
+          <span>{{usuario.nome}}</span>
         </Rotulo>
         <Rotulo nome="Senha">
-          <span>???</span>
+          <span>{{usuario.senha}}</span>
         </Rotulo>
         <Rotulo nome="Conta do banco">
-          <span>???</span>
+          <span>{{usuario.banco}}</span>
         </Rotulo>
       </div>
     </div>
@@ -36,11 +36,19 @@
 
 <script>
 import Rotulo from "./components/Rotulo.vue";
-import Escolha from "./components/Escolha.vue";
 
 export default {
   name: "app",
-  components: { Rotulo, Escolha }
+  components: { Rotulo },
+  data() {
+    return {
+      usuario: {
+        nome: "",
+        senha: "",
+        banco: ""
+      }
+    };
+  }
 };
 </script>
 

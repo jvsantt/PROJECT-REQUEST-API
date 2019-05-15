@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Cadastro de usuário</h1>
     <div class="conteudo">
-      <form class="painel">
+      <form class="painel" v-if="!enviado">
         <div class="cabecalho">Formulário usuário</div>
         <Rotulo nome="Nome">
           <input type="text" v-model.lazy.trim="usuario.nome">
@@ -13,12 +13,10 @@
         <Rotulo nome="Conta do banco">
           <input type="text" v-model.lazy.trim="usuario.banco">
         </Rotulo>
-
         <hr>
-
-        <button>Enviar</button>
+        <button @click.prevent="enviar">Enviar</button>
       </form>
-      <div class="painel">
+      <div class="painel" v-else>
         <div class="cabecalho">Resultado</div>
         <Rotulo nome="Nome">
           <span>{{usuario.nome}}</span>
@@ -40,13 +38,19 @@ import Rotulo from "./components/Rotulo.vue";
 export default {
   name: "app",
   components: { Rotulo },
+  methods: {
+    enviar() {
+      this.enviado = true;
+    }
+  },
   data() {
     return {
       usuario: {
         nome: "",
         senha: "",
         banco: ""
-      }
+      },
+      enviado: false
     };
   }
 };
@@ -89,7 +93,7 @@ body {
   font-size: 1.4rem;
 }
 
-#app form button {
+.painel button {
   float: right;
   margin: 10px 0px;
   padding: 10px 20px;

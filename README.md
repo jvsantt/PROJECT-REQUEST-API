@@ -1,4 +1,4 @@
-# bank-project
+# http-exercicios
 
 ## Project setup
 ```

@@ -18,7 +18,7 @@
     <b-list-group>
       <b-list-group-item v-for="(usuario,id) in usuarios" :key="id">
         <strong>Nome:</strong>
-        {{usuario.nome}}
+        {{usuario.name}}
         <br>
         <strong>E-mail:</strong>
         {{usuario.email}}
@@ -48,13 +48,13 @@ export default {
   methods: {
     salvar() {
       this.$http.post("users", this.usuario).then(resp => {
-        (this.usuario.nome = ""), (this.usuario.email = "");
+        (this.usuario.name = ""), (this.usuario.email = "");
       });
     },
 
     obterUsuarios() {
       axios("http://frontendapi.cm2tech.com.br/users").then(res => {
-        this.usuarios = res.data;
+        this.usuarios = res.data['hydra:member'];
       });
     }
   }

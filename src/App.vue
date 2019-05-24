@@ -47,14 +47,16 @@ export default {
 
   methods: {
     salvar() {
-      this.$http.post("users", this.usuario).then(resp => {
-        (this.usuario.name = ""), (this.usuario.email = "");
-      });
+      this.$http
+        .post("http://frontendapi.cm2tech.com.br/users", this.usuario)
+        .then(resp => {
+          (this.usuario.name = ""), (this.usuario.email = "");
+        });
     },
 
     obterUsuarios() {
       axios("http://frontendapi.cm2tech.com.br/users").then(res => {
-        this.usuarios = res.data['hydra:member'];
+        this.usuarios = res.data["hydra:member"];
       });
     }
   }
